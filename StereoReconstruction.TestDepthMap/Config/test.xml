@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Subject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SubjectName>Book</SubjectName>
+  <InputDataFolder>D:\Data\!Test\Img</InputDataFolder>
+  <OutputDataFolder>D:\Data\!Test\Results</OutputDataFolder>
+  <Pairs>
+    <StereoPair>
+      <NameImage1>_median1.jpg</NameImage1>
+      <NameImage2>_median2.jpg</NameImage2>
+      <CameraCoordinates>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </CameraCoordinates>
+      <Properties>
+        <FocalLength>40</FocalLength>
+        <Distance>100</Distance>
+        <TemplateSize>20</TemplateSize>
+      </Properties>
+    </StereoPair>
+  </Pairs>
+</Subject>
