@@ -16,6 +16,7 @@ namespace StereoReconstruction.Common.Helpers
         /// <param name="path">Путь к xml файлу</param>
         public static void SerializeToXml<T>(T data, string path)
         {
+
             XmlSerializer srzr = new XmlSerializer(typeof(T));
             using (StreamWriter sw = new StreamWriter(path))
             {

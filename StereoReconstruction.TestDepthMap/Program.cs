@@ -10,28 +10,40 @@ namespace StereoReconstruction.TestDepthMap
     {
         static void Main(string[] args)
         {
-            if(args.GetLength(0) == 1)
+            if (ArgumentsProcessing(args))
             {
-                DepthMap.Create(args[0]);
+                //DepthMap.Create(AppConfig.ConfigPath);
+                Console.WriteLine(AppConfig.ConfigPath);
             }
-            else if (args.GetLength(0) == 2)
-            {
-                int size = Convert.ToInt32(args[1]);
-                Image<Gray, byte> image1 = new Image<Gray, byte>("1.jpg");
-                Image<Gray, byte> image2 = new Image<Gray, byte>("2.jpg");
-
-                Image<Gray, byte> mediansmooth1 = image1.SmoothMedian(size);
-                Image<Gray, byte> mediansmooth2 = image2.SmoothMedian(size);
-                mediansmooth1.Save(@"D:\Data\!Test\Img\_median1.jpg");
-                mediansmooth2.Save(@"D:\Data\!Test\Img\_median2.jpg");
-            }
-            else
-            {
-                DepthMap.Create("test.xml");
-            }
-
-            Console.WriteLine("Готово");
             Console.ReadKey();
+        }
+
+        public static bool ArgumentsProcessing(string[] args)
+        {
+            if (args.GetLength(0) == 0)
+            {
+                Console.WriteLine("Нету аргументов командной строки.");
+                return false;
+            }
+
+            for (int i = 0; i < args.Length; i++)
+            {
+                switch (args[i])
+                {
+                    case "-config":
+                        if (i + 1 < args.Length)
+                        {
+                            AppConfig.ConfigPath = args[i + 1];
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("У аргумента '-config' нету пути к файлу.");
+                            return false;
+                        }
+                }
+            }
+            return true;
         }
     }
 }

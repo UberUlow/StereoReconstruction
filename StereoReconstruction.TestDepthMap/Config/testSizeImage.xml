@@ -60,5 +60,33 @@
         <TemplateSize>20</TemplateSize>
       </Properties>
     </StereoPair>
+    <StereoPair>
+      <NameImage1>9.jpg</NameImage1>
+      <NameImage2>10.jpg</NameImage2>
+      <CameraCoordinates>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </CameraCoordinates>
+      <Properties>
+        <FocalLength>40</FocalLength>
+        <Distance>250</Distance>
+        <TemplateSize>20</TemplateSize>
+      </Properties>
+    </StereoPair>
+    <StereoPair>
+      <NameImage1>11.jpg</NameImage1>
+      <NameImage2>12.jpg</NameImage2>
+      <CameraCoordinates>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </CameraCoordinates>
+      <Properties>
+        <FocalLength>40</FocalLength>
+        <Distance>300</Distance>
+        <TemplateSize>20</TemplateSize>
+      </Properties>
+    </StereoPair>
   </Pairs>
 </Subject>

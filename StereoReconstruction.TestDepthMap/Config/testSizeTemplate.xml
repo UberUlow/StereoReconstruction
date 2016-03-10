@@ -29,7 +29,35 @@
       <Properties>
         <FocalLength>40</FocalLength>
         <Distance>150</Distance>
+        <TemplateSize>15</TemplateSize>
+      </Properties>
+    </StereoPair>
+    <StereoPair>
+      <NameImage1>1.jpg</NameImage1>
+      <NameImage2>2.jpg</NameImage2>
+      <CameraCoordinates>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </CameraCoordinates>
+      <Properties>
+        <FocalLength>40</FocalLength>
+        <Distance>150</Distance>
         <TemplateSize>20</TemplateSize>
+      </Properties>
+    </StereoPair>
+    <StereoPair>
+      <NameImage1>1.jpg</NameImage1>
+      <NameImage2>2.jpg</NameImage2>
+      <CameraCoordinates>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </CameraCoordinates>
+      <Properties>
+        <FocalLength>40</FocalLength>
+        <Distance>150</Distance>
+        <TemplateSize>25</TemplateSize>
       </Properties>
     </StereoPair>
     <StereoPair>
@@ -57,7 +85,35 @@
       <Properties>
         <FocalLength>40</FocalLength>
         <Distance>150</Distance>
+        <TemplateSize>35</TemplateSize>
+      </Properties>
+    </StereoPair>
+    <StereoPair>
+      <NameImage1>1.jpg</NameImage1>
+      <NameImage2>2.jpg</NameImage2>
+      <CameraCoordinates>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </CameraCoordinates>
+      <Properties>
+        <FocalLength>40</FocalLength>
+        <Distance>150</Distance>
         <TemplateSize>40</TemplateSize>
+      </Properties>
+    </StereoPair>
+    <StereoPair>
+      <NameImage1>1.jpg</NameImage1>
+      <NameImage2>2.jpg</NameImage2>
+      <CameraCoordinates>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </CameraCoordinates>
+      <Properties>
+        <FocalLength>40</FocalLength>
+        <Distance>150</Distance>
+        <TemplateSize>45</TemplateSize>
       </Properties>
     </StereoPair>
   </Pairs>
