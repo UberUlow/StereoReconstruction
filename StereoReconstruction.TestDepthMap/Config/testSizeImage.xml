@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Subject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SubjectName>Book</SubjectName>
-  <InputDataFolder>TestSizeImage\Img</InputDataFolder>
-  <OutputDataFolder>TestSizeImage\Results</OutputDataFolder>
+  <InputDataFolder>D:\Data\TestSizeImage\Img</InputDataFolder>
+  <OutputDataFolder>D:\Data\TestSizeImage\Results</OutputDataFolder>
   <Pairs>
     <StereoPair>
       <NameImage1>1.jpg</NameImage1>

@@ -47,15 +47,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Emgu.CV">
-      <HintPath>..\libs\Emgu.CV.dll</HintPath>
-    </Reference>
-    <Reference Include="Emgu.CV.UI">
-      <HintPath>..\libs\Emgu.CV.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Emgu.Util">
-      <HintPath>..\libs\Emgu.Util.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -73,8 +64,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="NLog.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\StereoReconstruction.Common\StereoReconstruction.Common.csproj">
+      <Project>{4c1e280d-5b78-43a7-9b53-d88810c0047b}</Project>
+      <Name>StereoReconstruction.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StereoReconstruction.DepthMapFromStereo\StereoReconstruction.DepthMapFromStereo.csproj">
       <Project>{f84a1fc1-6f20-460b-8726-d7aa28cc238c}</Project>
       <Name>StereoReconstruction.DepthMapFromStereo</Name>

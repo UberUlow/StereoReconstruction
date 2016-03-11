@@ -1,8 +1,6 @@
 ﻿using System;
 using StereoReconstruction.DepthMapFromStereo;
-
-using Emgu.CV;
-using Emgu.CV.Structure;
+using StereoReconstruction.Common.Helpers;
 
 namespace StereoReconstruction.TestDepthMap
 {
@@ -12,8 +10,9 @@ namespace StereoReconstruction.TestDepthMap
         {
             if (ArgumentsProcessing(args))
             {
-                //DepthMap.Create(AppConfig.ConfigPath);
-                Console.WriteLine(AppConfig.ConfigPath);
+                Subject subject = SerializerHelper.DeserializeFromXml<Subject>(AppConfig.ConfigPath);
+                DepthMap.Create(subject);
+                //Console.WriteLine(AppConfig.ConfigPath);
             }
             Console.ReadKey();
         }
@@ -33,12 +32,20 @@ namespace StereoReconstruction.TestDepthMap
                     case "-config":
                         if (i + 1 < args.Length)
                         {
-                            AppConfig.ConfigPath = args[i + 1];
-                            break;
+                            if (args[i+1].Contains(".xml"))
+                            {
+                                AppConfig.ConfigPath = args[i + 1];
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("У параметра '-config' неверное имя файла.");
+                                return false;
+                            }
                         }
                         else
                         {
-                            Console.WriteLine("У аргумента '-config' нету пути к файлу.");
+                            Console.WriteLine("У параметра '-config' нету пути к файлу.");
                             return false;
                         }
                 }
