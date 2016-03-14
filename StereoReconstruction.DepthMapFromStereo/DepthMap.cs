@@ -22,8 +22,8 @@ namespace StereoReconstruction.DepthMapFromStereo
         /// <param name="subject">Субъект съемки</param>
         public static void Create(Subject subject)
         {
-            /*try
-            {*/
+            try
+            {
                 SubjectResults results = new SubjectResults(); // Иницилизация результатов построения карты глубины
                 results.SubjectName = subject.SubjectName;
                 results.DepthMapResults = new List<SubjectResults.DepthMapResult>(); // Иницилизация списка результатов карты глубины для каждой пары
@@ -57,12 +57,12 @@ namespace StereoReconstruction.DepthMapFromStereo
                 }
                 SerializerHelper.SerializeToXml(results, $@"{subject.OutputDataFolder}\results.xml"); // Сериализация (запись) результатов в xml-файл
                 Tracer.Info($@"Результаты построения карт глубин объекта '{subject.SubjectName}' записаны в файл {subject.OutputDataFolder}\results.xml");
-            /*}
+            }
             catch (Exception ex)
             {
                 Tracer.Info("Ошибка построения карты глубины. Подробности смотрите в файле error.txt");
                 Tracer.Error("Ошибка построения карты глубины.", ex);
-            }*/
+            }
         }
 
         /// <summary>
