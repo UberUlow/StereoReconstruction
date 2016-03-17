@@ -20,48 +20,65 @@ namespace StereoReconstruction.DepthMapFromStereo
         /// Создание карты глубины
         /// </summary>
         /// <param name="subject">Субъект съемки</param>
-        public static void Create(Subject subject)
+        /// <param name="writeToFile">Флаг записи результатов в файл</param>
+        public static List<ResultsFromRegionGrowing> Create(Subject subject, bool writeToFile)
         {
             try
             {
-                SubjectResults results = new SubjectResults(); // Иницилизация результатов построения карты глубины
+                Tracer.Info($"Построение карт глубины для субъекта '{subject.SubjectName}':\n");
+                SubjectFileResults results = new SubjectFileResults(); // Иницилизация результатов построения карты глубины
                 results.SubjectName = subject.SubjectName;
-                results.DepthMapResults = new List<SubjectResults.DepthMapResult>(); // Иницилизация списка результатов карты глубины для каждой пары
+                results.DepthMapResults = new List<SubjectFileResults.DepthMapResult>(); // Иницилизация списка результатов карты глубины для каждой пары
+
+                List<ResultsFromRegionGrowing> subjectDepthMapResults = new List<ResultsFromRegionGrowing>();
 
                 int count = 1; // Счетчик для нумерации карт глубины и их изображений
                 foreach (var pair in subject.Pairs) // Проход по всем стереопарам
                 {
-                    Tracer.Info($"Инициализация входных данных для {count}-й пары...");
-                    Image<Gray, byte> image1 = new Image<Gray, byte>($@"{subject.InputDataFolder}\{pair.NameImage1}").SmoothMedian(11); // Считывание 1-го изображения
-                    Image<Gray, byte> image2 = new Image<Gray, byte>($@"{subject.InputDataFolder}\{pair.NameImage2}").SmoothMedian(11); // Считывание 2-го изображения
+                    Image<Gray, byte> image1 = new Image<Gray, byte>($@"{subject.InputDataFolder}\{pair.NameImage1}").SmoothMedian(5); // Считывание 1-го изображения
+                    Image<Gray, byte> image2 = new Image<Gray, byte>($@"{subject.InputDataFolder}\{pair.NameImage2}").SmoothMedian(5); // Считывание 2-го изображения
 
                     double[,] depthMap = new double[image1.Width, image1.Height]; // Иницилизация карты глубины
                     Image<Gray, byte> depthMapImg = new Image<Gray, byte>(image1.Width, image1.Height); // Иницилизация изображение карты глубины
 
-                    Tracer.Info($"Построение карты глубины...");
+                    Tracer.Info($"Построение карты глубины для {count}-й пары изображений...");
                     Stopwatch timer = Stopwatch.StartNew(); // Старт секундомера для диагностики работы алгоритма
-                    PassageAcrossImage(image1, image2, pair.Properties.TemplateSize, pair.Properties.FocalLength, pair.Properties.Distance, depthMap, depthMapImg); // Проход по всему изображению
 
-                    string outputDepthMapPath = $@"{subject.OutputDataFolder}\depthMap{count}.txt"; // Путь к карте глубины
-                    Tracer.Info($"Запись карты глубины в файл {outputDepthMapPath}...");
-                    FileHelper.WriteMatrix(outputDepthMapPath, depthMap, " ");
-                    
-                    string outputDepthMapImagePath = $@"{subject.OutputDataFolder}\_depthMap{count}.jpg"; // Путь к изображению карты глубины
-                    Tracer.Info($"Запись изображения карты глубины в файл {outputDepthMapImagePath}...\n");
-                    depthMapImg.Save(outputDepthMapImagePath); // Запись изображения карты глубины в файл
+                    // Проход по всему изображению
+                    PassageAcrossImage(image1, image2, pair.Properties.TemplateSize, pair.Properties.FocalLength, pair.Properties.Distance, depthMap, depthMapImg);
 
-                    // Добавление всей информации о результатах построения карты глубины в список
-                    results.DepthMapResults.Add(new SubjectResults.DepthMapResult(timer.ElapsedMilliseconds, outputDepthMapPath, outputDepthMapImagePath, pair.Properties, pair.CameraCoordinates));
                     timer.Stop(); // Остановка секундомера
+                    Tracer.Info($"Карта глубины для {count}-й пары изображений построена. Это заняло {timer.ElapsedMilliseconds} мс.\n");
+
+                    subjectDepthMapResults.Add(new ResultsFromRegionGrowing(depthMap, pair.Properties.TemplateSize)); // Запись информации о карте глубины в список результатов построения карт глубины для алгоритма наращивания регионов
+
+                    if (writeToFile) // Если флаг установлен на запись в файл
+                    {
+                        string outputDepthMapPath = $@"{subject.OutputDataFolder}\depthMap{count}.txt"; // Путь к карте глубины
+                        Tracer.Info($"Запись {count}-й карты глубины в файл {outputDepthMapPath}...");
+                        FileHelper.WriteMatrix(outputDepthMapPath, depthMap, ' '); // Запись карты глубины в файл
+
+                        string outputDepthMapImagePath = $@"{subject.OutputDataFolder}\_depthMap{count}.jpg"; // Путь к изображению карты глубины
+                        Tracer.Info($"Запись {count}-го изображения карты глубины в файл {outputDepthMapImagePath}...\n");
+                        depthMapImg.Save(outputDepthMapImagePath); // Запись изображения карты глубины в файл
+
+                        // Добавление всей информации о результатах построения карты глубины в список
+                        results.DepthMapResults.Add(new SubjectFileResults.DepthMapResult(timer.ElapsedMilliseconds, outputDepthMapPath, outputDepthMapImagePath, pair.Properties, pair.CameraCoordinates));
+                    }
                     count++;
                 }
-                SerializerHelper.SerializeToXml(results, $@"{subject.OutputDataFolder}\results.xml"); // Сериализация (запись) результатов в xml-файл
-                Tracer.Info($@"Результаты построения карт глубин объекта '{subject.SubjectName}' записаны в файл {subject.OutputDataFolder}\results.xml");
+                if (writeToFile)
+                {
+                    SerializerHelper.SerializeToXml(results, $@"{subject.OutputDataFolder}\results.xml"); // Сериализация (запись) результатов в xml-файл
+                    Tracer.Info($@"Результаты построения карт глубин объекта '{subject.SubjectName}' записаны в файл {subject.OutputDataFolder}\results.xml");
+                }
+                return subjectDepthMapResults;
             }
             catch (Exception ex)
             {
                 Tracer.Info("Ошибка построения карты глубины. Подробности смотрите в файле error.txt");
                 Tracer.Error("Ошибка построения карты глубины.", ex);
+                return null;
             }
         }
 

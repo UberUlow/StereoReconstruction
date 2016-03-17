@@ -9,56 +9,54 @@ namespace StereoReconstruction.RegionGrowing
     public static class Calculation
     {
         /// <summary>
-        /// Вычисление значений дескрипторов
+        /// Вычисление цветовых дескрипторов
         /// </summary>
+        /// <param name="point">Точка, принадлежащая искомому региону</param>
         /// <param name="image">Изображение</param>
-        /// <param name="percentOffset">Процент отступа от центра (как далеко от центра выбирать новые точки)</param>
-        /// <param name="deviationDisp">Отклонение дисперсии</param>
-        /// <returns></returns>
-        public static Descriptors CalculateDescriptors(Bitmap image, int percentOffset, int deviationDisp)
+        /// <param name="percentageIdent">Процент отступа от центра (как далеко от центра выбирать новые точки)</param>
+        /// <param name="dispersionDeviation">Отклонение дисперсии</param>
+        /// <returns>Вычесленные цветовые дескрипторы</returns>
+        public static ColorDescriptors CalculateColorDescriptors(Point point, Bitmap image, int percentageIdent, int dispersionDeviation)
         {
-            int offsetX = image.Width / percentOffset; // Смещение по X в пикселях
-            int offsetY = image.Height / percentOffset; // Смещение по Y в пикселях
-            int centerX = image.Width / 2; // Центр изображения по X (предполагается, что объект в фокусе)
-            int centerY = image.Height / 2; // Центр изображения по Y (предполагается, что объект в фокусе)
+            int offsetX = image.Width * (percentageIdent / 100); // Смещение по X в пикселях
+            int offsetY = image.Height * (percentageIdent / 100); // Смещение по Y в пикселях
 
-            Point[] points = new Point[] // Массив точек: в центре, слева, слева сверху, сверху, справа сверху, справа, снизу справа, снизу, слева снизу от центра соответственно
+            Point[] points = new Point[] // Массив точек: сама точка, слева, слева сверху, сверху, справа сверху, справа, снизу справа, снизу, слева снизу от неё
             {
-                new Point(centerX, centerY),
-                new Point(centerX - offsetX, centerY - offsetY),
-                new Point(centerX + offsetX, centerY + offsetY),
-                new Point(centerX - offsetX, centerY + offsetY),
-                new Point(centerX + offsetX, centerY - offsetY),
-                new Point(centerX + offsetX, centerY),
-                new Point(centerX - offsetX, centerY),
-                new Point(centerX, centerY + offsetY),
-                new Point(centerX, centerY - offsetY)
-
+                new Point(point.X, point.Y),
+                new Point(point.X - offsetX, point.Y - offsetY),
+                new Point(point.X + offsetX, point.Y + offsetY),
+                new Point(point.X - offsetX, point.Y + offsetY),
+                new Point(point.X + offsetX, point.Y - offsetY),
+                new Point(point.X + offsetX, point.Y),
+                new Point(point.X - offsetX, point.Y),
+                new Point(point.X, point.Y + offsetY),
+                new Point(point.X, point.Y - offsetY)
             };
 
-            double eR = 0, eG = 0, eB = 0, dR = 0, dG = 0, dB = 0; // Иницилизация дескрипторов
+            double expectedR = 0, expectedG = 0, expectedB = 0, dispersionR = 0, dispersionG = 0, dispersionB = 0; // Иницилизация дескрипторов
             // Вычисление мат. ожидания
             foreach (Point p in points)
             {
-                eR += image.GetPixel(p.X, p.Y).R;
-                eG += image.GetPixel(p.X, p.Y).G;
-                eB += image.GetPixel(p.X, p.Y).B;
+                expectedR += image.GetPixel(p.X, p.Y).R;
+                expectedG += image.GetPixel(p.X, p.Y).G;
+                expectedB += image.GetPixel(p.X, p.Y).B;
             }
-            eR = eR / points.Length;
-            eG = eG / points.Length;
-            eB = eB / points.Length;
+            expectedR = expectedR / points.Length;
+            expectedG = expectedG / points.Length;
+            expectedB = expectedB / points.Length;
             // Вычисление дисперсии
             foreach (Point p in points)
             {
-                dR += Math.Abs(image.GetPixel(p.X, p.Y).R - eR);
-                dG += Math.Abs(image.GetPixel(p.X, p.Y).G - eG);
-                dB += Math.Abs(image.GetPixel(p.X, p.Y).B - eB);
+                dispersionR += Math.Abs(image.GetPixel(p.X, p.Y).R - expectedR);
+                dispersionG += Math.Abs(image.GetPixel(p.X, p.Y).G - expectedG);
+                dispersionB += Math.Abs(image.GetPixel(p.X, p.Y).B - expectedB);
             }
-            dR = dR / points.Length + deviationDisp;
-            dG = dG / points.Length + deviationDisp;
-            dB = dB / points.Length + deviationDisp;
+            dispersionR = dispersionR / points.Length + dispersionDeviation;
+            dispersionG = dispersionG / points.Length + dispersionDeviation;
+            dispersionB = dispersionB / points.Length + dispersionDeviation;
 
-            return new Descriptors(eR, eG, eB, dR, dG, dB);
+            return new ColorDescriptors(expectedR, expectedG, expectedB, dispersionR, dispersionG, dispersionB);
         }
     }
 }

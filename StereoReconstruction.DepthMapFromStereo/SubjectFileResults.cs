@@ -5,14 +5,14 @@ namespace StereoReconstruction.DepthMapFromStereo
     /// <summary>
     /// Класс для записи информации о результатах построения карты глубины субъекта
     /// </summary>
-    public class SubjectResults
+    public class SubjectFileResults
     {
         public string SubjectName; // Имя субъекта
         public List<DepthMapResult> DepthMapResults; // Результаты построения карт глубин для каждой пары
 
-        public SubjectResults() { }
+        public SubjectFileResults() { }
 
-        public SubjectResults(string subjectName, List<DepthMapResult> depthMapResults)
+        public SubjectFileResults(string subjectName, List<DepthMapResult> depthMapResults)
         {
             SubjectName = subjectName;
             DepthMapResults = depthMapResults;
@@ -30,7 +30,7 @@ namespace StereoReconstruction.DepthMapFromStereo
             public Subject.StereoPair.Coordinates Coordinates; // Координаты камеры для пары изображений
 
             public DepthMapResult() { }
-
+            
             public DepthMapResult(long time, string outputDepthMapPath, string outputDepthMapImagePath, Subject.StereoPair.Settings properties, Subject.StereoPair.Coordinates coordinates)
             {
                 Time = time;

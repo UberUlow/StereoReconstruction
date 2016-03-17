@@ -78,6 +78,10 @@
       <Project>{f84a1fc1-6f20-460b-8726-d7aa28cc238c}</Project>
       <Name>StereoReconstruction.DepthMapFromStereo</Name>
     </ProjectReference>
+    <ProjectReference Include="..\StereoReconstruction.RegionGrowing\StereoReconstruction.RegionGrowing.csproj">
+      <Project>{89cf75ef-1abc-4954-bd8b-8563f4debf1b}</Project>
+      <Name>StereoReconstruction.RegionGrowing</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

@@ -1,6 +1,9 @@
 ﻿using System;
 using StereoReconstruction.DepthMapFromStereo;
 using StereoReconstruction.Common.Helpers;
+using StereoReconstruction.RegionGrowing;
+using System.Drawing;
+using System.Collections.Generic;
 
 namespace StereoReconstruction.TestDepthMap
 {
@@ -11,10 +14,21 @@ namespace StereoReconstruction.TestDepthMap
             if (ArgumentsProcessing(args))
             {
                 Subject subject = SerializerHelper.DeserializeFromXml<Subject>(AppConfig.ConfigPath);
-                DepthMap.Create(subject);
+                List<ResultsFromRegionGrowing> depthMapResults =  DepthMap.Create(subject, false);
+                DepthSegmentation.AutoRegionGrowing(depthMapResults, 8, true, subject.OutputDataFolder);
                 //Console.WriteLine(AppConfig.ConfigPath);
             }
             Console.ReadKey();
+        }
+
+        public static void GetRandomNumbersAndColors(int[] array, Color[] colors)
+        {
+            Random rnd = new Random();
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = i + 1;
+                colors[i] = Color.FromArgb(rnd.Next(20, 236), rnd.Next(20, 236), rnd.Next(20, 236));
+            }
         }
 
         public static bool ArgumentsProcessing(string[] args)

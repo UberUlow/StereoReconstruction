@@ -42,9 +42,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calculation.cs" />
-    <Compile Include="Descriptors.cs" />
+    <Compile Include="ColorDescriptors.cs" />
+    <Compile Include="DepthSegmentation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Segmentation.cs" />
+    <Compile Include="ColorSegmentation.cs" />
+    <Compile Include="RegionUniqueness.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StereoReconstruction.Common\StereoReconstruction.Common.csproj">
+      <Project>{4c1e280d-5b78-43a7-9b53-d88810c0047b}</Project>
+      <Name>StereoReconstruction.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StereoReconstruction.DepthMapFromStereo\StereoReconstruction.DepthMapFromStereo.csproj">
+      <Project>{f84a1fc1-6f20-460b-8726-d7aa28cc238c}</Project>
+      <Name>StereoReconstruction.DepthMapFromStereo</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
