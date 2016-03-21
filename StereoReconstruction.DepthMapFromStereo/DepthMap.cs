@@ -38,6 +38,9 @@ namespace StereoReconstruction.DepthMapFromStereo
                     Image<Gray, byte> image1 = new Image<Gray, byte>($@"{subject.InputDataFolder}\{pair.NameImage1}").SmoothMedian(5); // Считывание 1-го изображения
                     Image<Gray, byte> image2 = new Image<Gray, byte>($@"{subject.InputDataFolder}\{pair.NameImage2}").SmoothMedian(5); // Считывание 2-го изображения
 
+                    image1.Save($@"{subject.OutputDataFolder}\_1.jpg");
+                    image2.Save($@"{subject.OutputDataFolder}\_2.jpg");
+
                     double[,] depthMap = new double[image1.Width, image1.Height]; // Иницилизация карты глубины
                     Image<Gray, byte> depthMapImg = new Image<Gray, byte>(image1.Width, image1.Height); // Иницилизация изображение карты глубины
 
@@ -133,7 +136,7 @@ namespace StereoReconstruction.DepthMapFromStereo
                 double[] minValues, maxValues;
                 resultMatrix.MinMax(out minValues, out maxValues, out minLocations, out maxLocations);
 
-                if (maxValues[0] > 0.4)
+                if (maxValues[0] > 0.2)
                 {
                     return maxLocations[0];
                 }

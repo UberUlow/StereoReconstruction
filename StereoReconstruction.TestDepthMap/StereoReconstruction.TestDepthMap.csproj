@@ -96,6 +96,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Config\mainTest.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Config\test.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
