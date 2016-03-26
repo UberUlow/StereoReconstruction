@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StereoReconstruction.Сoord
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StereoReconstruction.ModelViewer", "StereoReconstruction.ModelViewer\StereoReconstruction.ModelViewer.csproj", "{AB6A4302-6B39-4606-874C-53CE263BB2A2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StereoReconstruction.Triangulation", "StereoReconstruction.Triangulation\StereoReconstruction.Triangulation.csproj", "{4BC3137E-98F1-4054-A0DE-343F41944073}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StereoReconstruction.STLWriter", "StereoReconstruction.STLWriter\StereoReconstruction.STLWriter.csproj", "{026A54C9-00D1-4881-996D-4839B8976E66}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +79,22 @@ Global
 		{AB6A4302-6B39-4606-874C-53CE263BB2A2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AB6A4302-6B39-4606-874C-53CE263BB2A2}.Release|x64.ActiveCfg = Release|x64
 		{AB6A4302-6B39-4606-874C-53CE263BB2A2}.Release|x64.Build.0 = Release|x64
+		{4BC3137E-98F1-4054-A0DE-343F41944073}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BC3137E-98F1-4054-A0DE-343F41944073}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BC3137E-98F1-4054-A0DE-343F41944073}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4BC3137E-98F1-4054-A0DE-343F41944073}.Debug|x64.Build.0 = Debug|Any CPU
+		{4BC3137E-98F1-4054-A0DE-343F41944073}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BC3137E-98F1-4054-A0DE-343F41944073}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BC3137E-98F1-4054-A0DE-343F41944073}.Release|x64.ActiveCfg = Release|Any CPU
+		{4BC3137E-98F1-4054-A0DE-343F41944073}.Release|x64.Build.0 = Release|Any CPU
+		{026A54C9-00D1-4881-996D-4839B8976E66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{026A54C9-00D1-4881-996D-4839B8976E66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{026A54C9-00D1-4881-996D-4839B8976E66}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{026A54C9-00D1-4881-996D-4839B8976E66}.Debug|x64.Build.0 = Debug|Any CPU
+		{026A54C9-00D1-4881-996D-4839B8976E66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{026A54C9-00D1-4881-996D-4839B8976E66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{026A54C9-00D1-4881-996D-4839B8976E66}.Release|x64.ActiveCfg = Release|Any CPU
+		{026A54C9-00D1-4881-996D-4839B8976E66}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,5 +106,7 @@ Global
 		{89CF75EF-1ABC-4954-BD8B-8563F4DEBF1B} = {32E65CC8-EBC3-4F42-9DB2-8092573AF451}
 		{7F5569F2-8DED-4BCE-965A-2AB57B229FD8} = {32E65CC8-EBC3-4F42-9DB2-8092573AF451}
 		{AB6A4302-6B39-4606-874C-53CE263BB2A2} = {A44A166D-3CE2-4F4B-9D45-C38B60748250}
+		{4BC3137E-98F1-4054-A0DE-343F41944073} = {32E65CC8-EBC3-4F42-9DB2-8092573AF451}
+		{026A54C9-00D1-4881-996D-4839B8976E66} = {32E65CC8-EBC3-4F42-9DB2-8092573AF451}
 	EndGlobalSection
 EndGlobal

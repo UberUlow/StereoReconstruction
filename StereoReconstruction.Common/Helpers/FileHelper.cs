@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace StereoReconstruction.Common.Helpers
 {
+    /// <summary>
+    /// Класс, для чтения или записи из/в файл
+    /// </summary>
     public static class FileHelper
     {
         /// <summary>

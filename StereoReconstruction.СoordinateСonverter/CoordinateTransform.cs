@@ -8,6 +8,9 @@ using System.Diagnostics;
 
 namespace StereoReconstruction.СoordinateСonverter
 {
+    /// <summary>
+    /// Класс, для приведения карты глубины в глобальную (трехмерную) систему координат
+    /// </summary>
     public static class CoordinateTransform
     {
         /// <summary>
@@ -30,7 +33,7 @@ namespace StereoReconstruction.СoordinateСonverter
                 double yRadian = subject.Pairs[n].CameraAngleRotation.YAngle * Math.PI / 180;
                 double zRadian = subject.Pairs[n].CameraAngleRotation.ZAngle * Math.PI / 180;
 
-                double widthStep = (double)depthMapResults[n].DepthMapValue.GetLength(1) / 2;
+                double widthStep = (double)depthMapResults[n].DepthMapValue.GetLength(1) / 2; // Центр матрицы (для того, чтобы отцентровать эту плоскость в глобальной системе координат)
 
                 Tracer.Info($"\nПриведение точек {n + 1}-й карты глубины в глобальную систему координат...");
                 for (int i = 0; i < depthMapResults[n].DepthMapValue.GetLength(0); i++)
@@ -48,8 +51,8 @@ namespace StereoReconstruction.СoordinateСonverter
                 }
             }
             Tracer.Info("Удаление точек с одинаковыми координатами в глобальной системе координат...");
-            List<Point3D> uniquePoints3D = SearchDuplicatePoints(points3D);
-            if (writeToFile)
+            List<Point3D> uniquePoints3D = SearchDuplicatePoints(points3D); // Удаление точек с одинаковыми координатами
+            if (writeToFile) // Если флаг записи == true, то записать список точек в файл
             {
                 Tracer.Info("\nЗапись неповторяющихся точек в файл...");
                 SaveFromFile(points3D, $@"{subject.OutputDataFolder}\3Dpoints.txt", ' ');
@@ -92,6 +95,7 @@ namespace StereoReconstruction.СoordinateСonverter
                 point3D.X = x;
                 point3D.Y = y;
             }
+            // Округление координат точку до двух десятых
             point3D.X = Math.Round(point3D.X, 2);
             point3D.Y = Math.Round(point3D.Y, 2);
             point3D.Z = Math.Round(point3D.Z, 2);
@@ -106,6 +110,9 @@ namespace StereoReconstruction.СoordinateСonverter
         /// <returns>Список неповторяющихся точек в трехмерном прострастве</returns>
         private static List<Point3D> SearchDuplicatePoints(List<Point3D> points3D)
         {
+            // Метод Linq, который возвращает список с уникальными точками
+            // т.к. класс Point3D пользовательский в этом методе используется специальный компаратор,
+            // который сравнивает координаты двух точек
             return points3D.Distinct(new Point3DComparer()).ToList();
         }
 
