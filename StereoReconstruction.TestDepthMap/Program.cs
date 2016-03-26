@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using StereoReconstruction.DepthMapFromStereo;
 using StereoReconstruction.Common.Helpers;
 using StereoReconstruction.RegionGrowing;
-using System.Collections.Generic;
+using StereoReconstruction.СoordinateСonverter;
 
 namespace StereoReconstruction.TestDepthMap
 {
@@ -12,9 +13,17 @@ namespace StereoReconstruction.TestDepthMap
         {
             if (ArgumentsProcessing(args))
             {
-                Subject subject = SerializerHelper.DeserializeFromXml<Subject>(AppConfig.ConfigPath);
-                List<ResultsFromRegionGrowing> depthMapResults =  DepthMap.Create(subject, true);
-                DepthSegmentation.AutoRegionGrowing(depthMapResults, 9, 40, true, subject.OutputDataFolder);
+                Subject subject = SerializerHelper.DeserializeFromXml<Subject>(AppConfig.ConfigPath); // Считывание данных из xml-файла
+                List<ResultsFromRegionGrowing> depthMapResults =  DepthMap.Create(subject, true); // Построение карт глубины для субъекта
+                List<int[,]> regionsMatrix =  DepthSegmentation.AutoRegionGrowing(depthMapResults, 9, 40, true, subject.OutputDataFolder); // Наращивание регионов по значениям карт глубин
+
+                /*List<ResultsFromRegionGrowing> depthMapResults = new List<ResultsFromRegionGrowing>();
+                depthMapResults.Add(new ResultsFromRegionGrowing(FileHelper.ReadMatrix<double>("1.txt", ' '), 1));
+                depthMapResults.Add(new ResultsFromRegionGrowing(FileHelper.ReadMatrix<double>("1.txt", ' '), 1));
+                List<int[,]> regionsMatrix = new List<int[,]>();
+                regionsMatrix.Add(FileHelper.ReadMatrix<int>("2.txt", ' '));
+                regionsMatrix.Add(FileHelper.ReadMatrix<int>("2.txt", ' '));*/
+                CoordinateTransform.TwoDMatricesInto3DSpace(subject, depthMapResults, regionsMatrix, true);
             }
             Console.ReadKey();
         }

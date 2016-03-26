@@ -12,6 +12,11 @@
         <Y>0</Y>
         <Z>0</Z>
       </CameraCoordinates>
+      <CameraAngleRotation>
+        <XRotationAngle>0</XRotationAngle>
+        <YRotationAngle>0</YRotationAngle>
+        <ZRotationAngle>0</ZRotationAngle>
+      </CameraAngleRotation>
       <Properties>
         <FocalLength>40</FocalLength>
         <Distance>150</Distance>

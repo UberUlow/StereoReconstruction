@@ -30,15 +30,17 @@ namespace StereoReconstruction.DepthMapFromStereo
             public string NameImage1; // Путь к изображени 1
             public string NameImage2; // Путь к изображению 2
             public Coordinates CameraCoordinates; // Координаты камер в момент съемки
+            public AngleRotation CameraAngleRotation; // Углы поворота камеры
             public Settings Properties; // Параметры камер
 
             public StereoPair() { }
 
-            public StereoPair(string nameImage1, string nameImage2, Coordinates cameraCoordinates, Settings properties)
+            public StereoPair(string nameImage1, string nameImage2, Coordinates cameraCoordinates, AngleRotation cameraAngleRotation, Settings properties)
             {
                 NameImage1 = nameImage1;
                 NameImage2 = nameImage2;
                 CameraCoordinates = cameraCoordinates;
+                CameraAngleRotation = cameraAngleRotation;
                 Properties = properties;
             }
 
@@ -47,17 +49,36 @@ namespace StereoReconstruction.DepthMapFromStereo
             /// </summary>
             public class Coordinates
             {
-                public int X; // Координата X
-                public int Y; // Координата Y
-                public int Z; // Координата Z
+                public double X; // Координата X
+                public double Y; // Координата Y
+                public double Z; // Координата Z
 
                 public Coordinates() { }
 
-                public Coordinates(int x, int y, int z)
+                public Coordinates(double x, double y, double z)
                 {
                     X = x;
                     Y = y;
                     Z = z;
+                }
+            }
+
+            /// <summary>
+            /// Углы поворота камеры относительно оси X, Y, Z
+            /// </summary>
+            public class AngleRotation
+            {
+                public int XAngle; // Угол поворота камеры относительно оси X
+                public int YAngle; // Угол поворота камеры относительно оси Y
+                public int ZAngle; // Угол поворота камеры относительно оси Z
+
+                public AngleRotation() { }
+
+                public AngleRotation(int xAngle, int yAngle, int zAngle)
+                {
+                    XAngle = xAngle;
+                    YAngle = yAngle;
+                    ZAngle = zAngle;
                 }
             }
 

@@ -1,0 +1,14 @@
+﻿<Window x:Class="StereoReconstruction.ModelViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:helix="clr-namespace:HelixToolkit;assembly=HelixToolkit"       
+        Title="Helix Studio" Height="800" Width="800">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Open" Click="OpenClick"/>
+        </Menu>
+        <helix:HelixView3D x:Name="viewport" CameraRotationMode="VirtualTrackball">
+            <helix:DefaultLightsVisual3D/>
+        </helix:HelixView3D>
+    </DockPanel>
+</Window>

@@ -82,7 +82,7 @@ namespace StereoReconstruction.RegionGrowing
         /// <param name="regionsMatrix">Матрица регионов</param>
         /// <param name="regionsImage">Изображение регионов</param>
         /// <param name="deleteRegions">Регионы, которые нужно будет удалить</param>
-        public static void GrowRegion(Point point, double[,] depthMapValue, double depthDeviation, int minRegionSize, RegionUniqueness regionUniqueness, ref int[,] regionsMatrix, ref Bitmap regionsImage, ref List<int> deleteRegions)
+        private static void GrowRegion(Point point, double[,] depthMapValue, double depthDeviation, int minRegionSize, RegionUniqueness regionUniqueness, ref int[,] regionsMatrix, ref Bitmap regionsImage, ref List<int> deleteRegions)
         {
             Queue<Point> points = new Queue<Point>(); // Очередь точек (они постояянно добавляются в методе CheckPoint, если это точка региона)
             points.Enqueue(point); // Добавление стратовой точки в очередь

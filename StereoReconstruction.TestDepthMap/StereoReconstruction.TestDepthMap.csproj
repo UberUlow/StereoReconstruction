@@ -82,6 +82,10 @@
       <Project>{89cf75ef-1abc-4954-bd8b-8563f4debf1b}</Project>
       <Name>StereoReconstruction.RegionGrowing</Name>
     </ProjectReference>
+    <ProjectReference Include="..\StereoReconstruction.СoordinateСonverter\StereoReconstruction.СoordinateСonverter.csproj">
+      <Project>{7f5569f2-8ded-4bce-965a-2ab57b229fd8}</Project>
+      <Name>StereoReconstruction.СoordinateСonverter</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -98,6 +102,10 @@
   <ItemGroup>
     <Content Include="Config\mainTest.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\threeDtest.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Config\test.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

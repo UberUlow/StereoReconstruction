@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Subject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SubjectName>Book</SubjectName>
+  <InputDataFolder>D:\Data\Test 4\Img</InputDataFolder>
+  <OutputDataFolder>D:\Data\Test 4\Results</OutputDataFolder>
+  <Pairs>
+    <StereoPair>
+      <NameImage1>1.bmp</NameImage1>
+      <NameImage2>2.bmp</NameImage2>
+      <CameraCoordinates>
+        <X>0</X>
+        <Y>-6</Y>
+        <Z>1</Z>
+      </CameraCoordinates>
+      <CameraAngleRotation>
+        <XRotationAngle>0</XRotationAngle>
+        <YRotationAngle>0</YRotationAngle>
+        <ZRotationAngle>0</ZRotationAngle>
+      </CameraAngleRotation>
+      <Properties>
+        <FocalLength>40</FocalLength>
+        <Distance>150</Distance>
+        <TemplateSize>1</TemplateSize>
+      </Properties>
+    </StereoPair>
+    <StereoPair>
+      <NameImage1>2.bmp</NameImage1>
+      <NameImage2>3.bmp</NameImage2>
+      <CameraCoordinates>
+        <X>0</X>
+        <Y>-6</Y>
+        <Z>1</Z>
+      </CameraCoordinates>
+      <CameraAngleRotation>
+        <XAngle>0</XAngle>
+        <YAngle>0</YAngle>
+        <ZAngle>30</ZAngle>
+      </CameraAngleRotation>
+      <Properties>
+        <FocalLength>40</FocalLength>
+        <Distance>150</Distance>
+        <TemplateSize>1</TemplateSize>
+      </Properties>
+    </StereoPair>
+    <StereoPair>
+      <NameImage1>4.bmp</NameImage1>
+      <NameImage2>5.bmp</NameImage2>
+      <CameraCoordinates>
+        <X>3</X>
+        <Y>-5.196</Y>
+        <Z>1</Z>
+      </CameraCoordinates>
+      <CameraAngleRotation>
+        <XRotationAngle>0</XRotationAngle>
+        <YRotationAngle>0</YRotationAngle>
+        <ZRotationAngle>30</ZRotationAngle>
+      </CameraAngleRotation>
+      <Properties>
+        <FocalLength>40</FocalLength>
+        <Distance>150</Distance>
+        <TemplateSize>1</TemplateSize>
+      </Properties>
+    </StereoPair>
+  </Pairs>
+</Subject>
