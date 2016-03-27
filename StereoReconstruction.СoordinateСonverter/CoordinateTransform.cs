@@ -57,6 +57,7 @@ namespace StereoReconstruction.СoordinateСonverter
                 Tracer.Info("\nЗапись неповторяющихся точек в файл...");
                 SaveFromFile(points3D, $@"{subject.OutputDataFolder}\3Dpoints.txt", ' ');
             }
+            timer.Stop(); // Остановка секундомера
             Tracer.Info($"Преобразование точек карт глубины в глобальную (трехмерную) систему координат завершилось. Это заняло {timer.ElapsedMilliseconds} мс.\n");
             return points3D;
         }

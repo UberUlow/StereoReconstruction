@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4BC3137E-98F1-4054-A0DE-343F41944073}</ProjectGuid>
+    <ProjectGuid>{55ACF3F5-7BD5-47C2-82CF-88366E838C43}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>StereoReconstruction.Triangulation</RootNamespace>
@@ -30,6 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Petzold.Media3D">
+      <HintPath>..\libs\Petzold.Media3D.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -38,11 +43,27 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Face.cs" />
+    <Compile Include="Builder3DModel.cs" />
+    <Compile Include="Vertex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\StereoReconstruction.Common\StereoReconstruction.Common.csproj">
+      <Project>{4c1e280d-5b78-43a7-9b53-d88810c0047b}</Project>
+      <Name>StereoReconstruction.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StereoReconstruction.ConvexHullCreater\StereoReconstruction.ConvexHullCreater.csproj">
+      <Project>{fc1cc618-90f2-441f-a920-d1eae415486b}</Project>
+      <Name>StereoReconstruction.ConvexHullCreater</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StereoReconstruction.STLWriter\StereoReconstruction.STLWriter.csproj">
+      <Project>{026a54c9-00d1-4881-996d-4839b8976e66}</Project>
+      <Name>StereoReconstruction.STLWriter</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StereoReconstruction.СoordinateСonverter\StereoReconstruction.СoordinateСonverter.csproj">
       <Project>{7f5569f2-8ded-4bce-965a-2ab57b229fd8}</Project>
       <Name>StereoReconstruction.СoordinateСonverter</Name>

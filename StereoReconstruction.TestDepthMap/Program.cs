@@ -4,6 +4,7 @@ using StereoReconstruction.DepthMapFromStereo;
 using StereoReconstruction.Common.Helpers;
 using StereoReconstruction.RegionGrowing;
 using StereoReconstruction.СoordinateСonverter;
+using StereoReconstruction.Triangulation;
 
 namespace StereoReconstruction.TestDepthMap
 {
@@ -14,16 +15,22 @@ namespace StereoReconstruction.TestDepthMap
             if (ArgumentsProcessing(args))
             {
                 Subject subject = SerializerHelper.DeserializeFromXml<Subject>(AppConfig.ConfigPath); // Считывание данных из xml-файла
-                List<ResultsFromRegionGrowing> depthMapResults =  DepthMap.Create(subject, true); // Построение карт глубины для субъекта
+                /*List<ResultsFromRegionGrowing> depthMapResults =  DepthMap.Create(subject, true); // Построение карт глубины для субъекта
                 List<int[,]> regionsMatrix =  DepthSegmentation.AutoRegionGrowing(depthMapResults, 9, 40, true, subject.OutputDataFolder); // Наращивание регионов по значениям карт глубин
+                CoordinateTransform.TwoDMatricesInto3DSpace(subject, depthMapResults, regionsMatrix, true);*/
+                List<Point3D> points3D = new List<Point3D>();
+                
+                points3D.Add(new Point3D(0, 0, 0));
+                points3D.Add(new Point3D(0, 0, 10));
+                points3D.Add(new Point3D(0, 10, 0));
+                points3D.Add(new Point3D(0, 10, 10));
+                points3D.Add(new Point3D(10, 10, 0));
+                points3D.Add(new Point3D(10, 10, 10));
+                points3D.Add(new Point3D(10, 0, 0));
+                points3D.Add(new Point3D(10, 0, 10));
+                points3D.Add(new Point3D(5, 5, 20));
 
-                /*List<ResultsFromRegionGrowing> depthMapResults = new List<ResultsFromRegionGrowing>();
-                depthMapResults.Add(new ResultsFromRegionGrowing(FileHelper.ReadMatrix<double>("1.txt", ' '), 1));
-                depthMapResults.Add(new ResultsFromRegionGrowing(FileHelper.ReadMatrix<double>("1.txt", ' '), 1));
-                List<int[,]> regionsMatrix = new List<int[,]>();
-                regionsMatrix.Add(FileHelper.ReadMatrix<int>("2.txt", ' '));
-                regionsMatrix.Add(FileHelper.ReadMatrix<int>("2.txt", ' '));*/
-                CoordinateTransform.TwoDMatricesInto3DSpace(subject, depthMapResults, regionsMatrix, true);
+                Builder3DModel.Create3DModel(points3D, subject.SubjectName, subject.OutputDataFolder);
             }
             Console.ReadKey();
         }

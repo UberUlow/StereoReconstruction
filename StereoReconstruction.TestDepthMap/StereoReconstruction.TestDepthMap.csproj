@@ -78,9 +78,17 @@
       <Project>{f84a1fc1-6f20-460b-8726-d7aa28cc238c}</Project>
       <Name>StereoReconstruction.DepthMapFromStereo</Name>
     </ProjectReference>
+    <ProjectReference Include="..\StereoReconstruction.ModelViewer\StereoReconstruction.ModelViewer.csproj">
+      <Project>{ab6a4302-6b39-4606-874c-53ce263bb2a2}</Project>
+      <Name>StereoReconstruction.ModelViewer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StereoReconstruction.RegionGrowing\StereoReconstruction.RegionGrowing.csproj">
       <Project>{89cf75ef-1abc-4954-bd8b-8563f4debf1b}</Project>
       <Name>StereoReconstruction.RegionGrowing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StereoReconstruction.Triangulation\StereoReconstruction.Triangulation.csproj">
+      <Project>{55acf3f5-7bd5-47c2-82cf-88366e838c43}</Project>
+      <Name>StereoReconstruction.Triangulation</Name>
     </ProjectReference>
     <ProjectReference Include="..\StereoReconstruction.СoordinateСonverter\StereoReconstruction.СoordinateСonverter.csproj">
       <Project>{7f5569f2-8ded-4bce-965a-2ab57b229fd8}</Project>
